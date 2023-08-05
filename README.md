@@ -42,3 +42,4 @@ Unmaintained
 
 # Projects used
 - [nils-werner/crestic](https://github.com/nils-werner/crestic)
+- [restic/restic](https://github.com/restic/restic)

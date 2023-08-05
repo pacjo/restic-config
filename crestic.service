@@ -1,0 +1,10 @@
+[Unit]
+Description=Crestic backup service
+
+[Service]
+Type=simple
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:/home/kamil/.local/bin/
+ExecStart=/home/kamil/.config/crestic/backup.sh
+
+[Install]
+WantedBy=default.target

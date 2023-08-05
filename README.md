@@ -5,6 +5,16 @@ This is a work in progress. Documentation is lacking, scripts are not perfect an
 # Setup
 1. Install [restic](https://github.com/restic/restic) and [crestic](https://github.com/nils-werner/crestic) (you might need to add crestic to PATH)
 2. Clone this repository to `~/.config` (`${XDG_CONFIG_HOME:-~/.config}`)
+3. **write the rest**
+
+roughly commands:
+1. `restic init --repo <path to repo>`
+2. `git clone https://github.com/pacjo/restic-config ${XDG_CONFIG_HOME:-~/.config}/crestic`
+3. `cd ${XDG_CONFIG_HOME:-~/.config}/crestic`
+4. `touch password`
+5. `echo "<your repo password>" > password`
+(adjust crestic.service and crestic.timer to your needs)
+6. `cp crestic.service crestic.timer ~/.config/systemd/user` (if you get error run: `mkdir -p ~/.config/systemd/user`)
 
 > TODO
 > add paths to config to `.zshrc` and similar

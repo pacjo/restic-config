@@ -39,4 +39,7 @@ echo "==== Running check... ====" | tee -a $LOG_FILE
 crestic $PRESET check | tee -a $LOG_FILE
 echo "==== Backup done! ====" | tee -a $LOG_FILE
 
-notify-send "Crestic backup routine" "Backup completed, go check logs for errors"
+# Run only if command exists (in case of a headless system)
+if command -v notify-send >/dev/null 2>&1; then
+    notify-send "Crestic backup routine" "Backup completed, go check logs for errors"
+fi

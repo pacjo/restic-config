@@ -40,6 +40,6 @@ crestic $PRESET check | tee -a $LOG_FILE
 echo "==== Backup done! ====" | tee -a $LOG_FILE
 
 # Run only if command exists (in case of a headless system)
-if command -v notify-send >/dev/null 2>&1; then
-    notify-send "Crestic backup routine" "Backup completed, go check logs for errors"
+if command -v apprise >/dev/null 2>&1; then
+    apprise --config=$CONFIG_DIRECTORY/apprise.yaml -t 'Crestic backup routine' -b 'Backup completed, go check logs for errors' --tag $PRESET
 fi

@@ -30,19 +30,20 @@ roughly commands:
 > TODO
 > see `backup.sh`, `crestic.service` and `crestic.timer`
 > rewrite properly:
-```
+
 to enable systemd service run:
 `--user` is needed for access to user session (for notifications)
+```
 (1. `sudo cp crestic.service crestic.timer /etc/systemd/system/`) old, used for systemd service
 1. `cp crestic.service crestic.timer ~/.config/systemd/user`
 2. `systemctl --user enable crestic.timer`
 2. `systemctl --user start crestic.timer`
+```
 
 see status with:
 `systemctl --user status crestic.timer` or `systemctl --user status crestic.service`
 reload (user) systemd services:
 `systemctl --user daemon-reload`
-```
 
 ### Windows
 Unmaintained

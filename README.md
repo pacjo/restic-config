@@ -8,6 +8,7 @@ This is a work in progress. Documentation is lacking, scripts are not perfect an
 
 > TODO
 > add paths to config to `.zshrc` and similar
+> add repo initialization instructions
 
 # Usage
 ## Manual backups

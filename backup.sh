@@ -22,6 +22,8 @@ export LOG_FILE=$CONFIG_DIRECTORY/logs/$(timestamp)_$PRESET.log
 # Ensure correct config is read, even when running as different user
 export CRESTIC_CONFIG_FILE=$CONFIG_DIRECTORY/config.cfg
 
+# Create logs directory in case it doesn't exist
+mkdir -p $CONFIG_DIRECTORY/logs
 # Create log file
 touch $LOG_FILE
 

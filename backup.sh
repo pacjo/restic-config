@@ -41,5 +41,11 @@ echo "==== Backup done! ====" | tee -a $LOG_FILE
 
 # Run only if command exists (in case of a headless system)
 if command -v apprise >/dev/null 2>&1; then
-    apprise --config=$CONFIG_DIRECTORY/apprise.yaml -t 'Crestic backup routine' -b 'Backup completed, go check logs for errors' --tag $PRESET
+    apprise \
+        --config=$CONFIG_DIRECTORY/apprise.yaml \
+        --title 'Crestic backup routine' \
+        --body 'Backup completed, go check logs for errors' \
+        --attach $LOG_FILE \
+        --tag $PRESET
 fi
+

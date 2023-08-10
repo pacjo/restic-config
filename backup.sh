@@ -5,7 +5,6 @@
 if [ -z "$1" ]
   then
     echo "No preset argument supplied, exiting"
-    notify-send "No preset argument supplied, backup failed"
     exit 1
 fi
 

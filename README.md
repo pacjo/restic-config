@@ -14,7 +14,9 @@ roughly commands:
 4. `touch password`
 5. `echo "<your repo password>" > password`
 (adjust crestic.service and crestic.timer to your needs)
-6. `cp crestic.service crestic.timer ~/.config/systemd/user` (if you get error run: `mkdir -p ~/.config/systemd/user`)
+6. `sudo cp crestic.service crestic.timer /etc/systemd/system/`
+7. `sudo systemctl enable crestic.service`
+8. `sudo systemctl start crestic.service`
 
 > TODO
 > add paths to config to `.zshrc` and similar
@@ -31,19 +33,10 @@ roughly commands:
 > see `backup.sh`, `crestic.service` and `crestic.timer`
 > rewrite properly:
 
-to enable systemd service run:
-`--user` is needed for access to user session (for notifications)
-```
-(1. `sudo cp crestic.service crestic.timer /etc/systemd/system/`) old, used for systemd service
-1. `cp crestic.service crestic.timer ~/.config/systemd/user`
-2. `systemctl --user enable crestic.timer`
-2. `systemctl --user start crestic.timer`
-```
-
 see status with:
-`systemctl --user status crestic.timer` or `systemctl --user status crestic.service`
+`sudo systemctl status crestic.service`
 reload (user) systemd services:
-`systemctl --user daemon-reload`
+`sudo systemctl daemon-reload`
 
 ### Windows
 Unmaintained

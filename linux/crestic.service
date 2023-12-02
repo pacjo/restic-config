@@ -1,0 +1,9 @@
+[Unit]
+Description=Crestic backup (%I)
+
+[Service]
+Nice=19
+IOSchedulingClass=idle
+KillSignal=SIGINT
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:/home/kamil/.local/bin/
+ExecStart=/home/kamil/.config/crestic/linux/backup.sh %I

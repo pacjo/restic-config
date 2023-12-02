@@ -26,17 +26,20 @@ mkdir -p $CONFIG_DIRECTORY/logs
 # Create log file
 touch $LOG_FILE
 
-echo "==== Configuration options ====" | tee -a $LOG_FILE
-echo "Running as $USER" | tee -a $LOG_FILE
-echo "Preset: $PRESET" | tee -a $LOG_FILE
+{
+  echo "==== Configuration options ===="
+  echo "Running as $USER"
+  echo "Preset: $PRESET"
 
-echo "==== Running backup... ====" | tee -a $LOG_FILE
-crestic $PRESET backup | tee -a $LOG_FILE
-echo "==== Running forget and prune... ====" | tee -a $LOG_FILE
-crestic $PRESET forget | tee -a $LOG_FILE
-echo "==== Running check... ====" | tee -a $LOG_FILE
-crestic $PRESET check | tee -a $LOG_FILE
-echo "==== Backup done! ====" | tee -a $LOG_FILE
+  echo "==== Running backup... ===="
+  /home/kamil/.local/bin/crestic "$PRESET" backup
+  echo "==== Running forget and prune... ===="
+  /home/kamil/.local/bin/crestic "$PRESET" forget
+  echo "==== Running check... ===="
+  /home/kamil/.local/bin/crestic "$PRESET" check
+  echo "==== Backup done! ===="
+} | tee -a "$LOG_FILE"
+
 
 # Run only if command exists (in case of a headless system)
 if command -v apprise >/dev/null 2>&1; then
@@ -47,4 +50,3 @@ if command -v apprise >/dev/null 2>&1; then
         --attach $LOG_FILE \
         --tag $PRESET
 fi
-

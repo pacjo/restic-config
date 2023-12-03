@@ -15,14 +15,18 @@ timestamp() {
   date "+%Y-%m-%d_%H:%M"
 }
 
-export CONFIG_DIRECTORY=${XDG_CONFIG_HOME:-~/.config}/crestic/
-export LOG_FILE=$CONFIG_DIRECTORY/logs/$(timestamp)_$PRESET.log
+
+# Get the directory where the script is located
+# ... and got one level up since those are in platform specific subdirectories
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)/..
+
+export LOG_FILE=$SCRIPT_DIR/logs/$(timestamp)_$PRESET.log
 
 # Ensure correct config is read, even when running as different user
-export CRESTIC_CONFIG_FILE=$CONFIG_DIRECTORY/config.cfg
+export CRESTIC_CONFIG_FILE=$SCRIPT_DIR/config.cfg
 
 # Create logs directory in case it doesn't exist
-mkdir -p $CONFIG_DIRECTORY/logs
+mkdir -p $SCRIPT_DIR/logs
 # Create log file
 touch $LOG_FILE
 
@@ -44,7 +48,7 @@ touch $LOG_FILE
 # Run only if command exists (in case of a headless system)
 if command -v apprise >/dev/null 2>&1; then
     apprise \
-        --config=$CONFIG_DIRECTORY/apprise.yaml \
+        --config=$SCRIPT_DIR/apprise.yaml \
         --title 'Crestic backup routine' \
         --body 'Backup completed, go check logs for errors' \
         --attach $LOG_FILE \
